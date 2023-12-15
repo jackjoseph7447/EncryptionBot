@@ -15,7 +15,7 @@
         private readonly int DegreeOfParallelism = 8;
         private readonly int MemorySize = 65536;
         private readonly int Iterations = 4;
-        private const string Token = "MTE4NTA4NDQ3MTQzNTg3MDI0OQ.GvHwvv.j7M_vTAWDQh9LXPioZZeeyhyqyRTPLPhUM2n-Y"; //Discord Bot Token
+        private const string Token = ""; //Discord Bot Token
 
         private DiscordSocketClient client;
 
