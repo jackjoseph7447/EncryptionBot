@@ -5,11 +5,41 @@
     using System.Linq;
     using System.Text;
 
+    //for discord
+    using Discord;
+    using Discord.WebSocket;
+    using System.Threading.Tasks;
+
     public class PasswordHasher
     {
         private readonly int DegreeOfParallelism = 8;
         private readonly int MemorySize = 65536;
         private readonly int Iterations = 4;
+        private const string Token = "MTE4NTA4NDQ3MTQzNTg3MDI0OQ.GvHwvv.j7M_vTAWDQh9LXPioZZeeyhyqyRTPLPhUM2n-Y"; //Discord Bot Token
+
+        private DiscordSocketClient client;
+
+        static void Main() => new PasswordHasher().RunBotAsync().GetAwaiter().GetResult();
+
+        public async Task RunBotAsync()
+        {
+            client = new DiscordSocketClient();
+            client.Log += Log;
+
+            //await RegisterCommandsAsync();
+
+            await client.LoginAsync(TokenType.Bot, Token);
+
+            await client.StartAsync();
+
+            await Task.Delay(-1);
+        }
+
+        private Task Log(LogMessage arg)
+        {
+            Console.WriteLine(arg);
+            return Task.CompletedTask;
+        }
 
         public string HashPassword(string password)
         {
@@ -24,7 +54,7 @@
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
 
             // Hash the password using Argon2
-            using (var hasher = new Argon2id(passwordBytes)) //testing changes to workBranch
+            using (var hasher = new Argon2id(passwordBytes))
             {
                 hasher.Salt = salt;
                 hasher.DegreeOfParallelism = DegreeOfParallelism;
