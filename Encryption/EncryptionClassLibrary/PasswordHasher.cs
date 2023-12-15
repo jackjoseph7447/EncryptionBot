@@ -24,7 +24,7 @@
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
 
             // Hash the password using Argon2
-            using (var hasher = new Argon2id(passwordBytes)) //testing changes
+            using (var hasher = new Argon2id(passwordBytes)) //testing changes to workBranch
             {
                 hasher.Salt = salt;
                 hasher.DegreeOfParallelism = DegreeOfParallelism;
