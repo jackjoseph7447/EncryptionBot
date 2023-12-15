@@ -9,13 +9,16 @@
     using Discord;
     using Discord.WebSocket;
     using System.Threading.Tasks;
+    using EncryptionClassLibrary;
 
     public class PasswordHasher
     {
         private readonly int DegreeOfParallelism = 8;
         private readonly int MemorySize = 65536;
         private readonly int Iterations = 4;
-        private const string Token = ""; //Discord Bot Token
+        GetToken theToken = new GetToken();
+
+        private string Token = theToken.GetStringToken();
 
         private DiscordSocketClient client;
 
